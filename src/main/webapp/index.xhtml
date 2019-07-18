@@ -27,7 +27,7 @@
       <div id="menubar">
         <ul id="menu">
           <!-- put class="tab_selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="tab_selected"><a href="our_services.html">Inicio</a></li>
+          <li ><a href="our_services.html">Inicio</a></li>
           <li><a href="about_us.html">Quienes somos</a></li>
           <li><a href="styles.html">Acerca de</a></li>
           </ul>
@@ -42,17 +42,19 @@
 		    <p:growl id="messages" showDetail="false"/>
 		 
 		    <h3 style="text-align: center">Menu Administrador</h3>
-		    <p:menu>
-		        <p:submenu label="Gestionar Ejercicios">
-		            <p:menuitem value="Registrar Ejercicio" action="#{menuView.save}" update="messages" icon="pi pi-save" />
-		            <p:menuitem value="Eliminar Ejercicio" action="#{menuView.update}" update="messages" icon="pi pi-refresh"/>
-		             <p:menuitem value="Actualizar Ejercicio" action="#{menuView.update}" update="messages" icon="pi pi-refresh"/>
-		        </p:submenu>
-		        <p:submenu label="Programa Fuerza">
-		            <p:menuitem value="Realizar Evaluacion" action="#{menuView.delete}" update="messages" ajax="false" icon="pi pi-times"/>
-		        </p:submenu>
-		    </p:menu>
-		    
+		 <p:menu toggleable="true">
+        <p:submenu label="Ajax">
+            <p:menuitem value="Save" action="#{menuView.save}" update="messages" icon="pi pi-save" />
+            <p:menuitem value="Update" action="#{menuView.update}" update="messages" icon="pi pi-refresh"/>
+        </p:submenu>
+        <p:submenu label="Non-Ajax">
+            <p:menuitem value="Delete" action="#{menuView.delete}" update="messages" ajax="false" icon="pi pi-times"/>
+        </p:submenu>
+        <p:submenu label="Navigations">
+            <p:menuitem value="External" url="http://www.primefaces.org" icon="pi pi-home"/>
+            <p:menuitem value="Internal" icon="pi pi-star"/>
+        </p:submenu>
+    </p:menu>
 		    </h:form>		    
 		   
        
