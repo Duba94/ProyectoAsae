@@ -10,5 +10,6 @@ import com.asae.dto.DTOEjercicio;
 public interface IEjbEjercicio {
 	public boolean insert(DTOEjercicio ObjEjercicio);
 	public List<DTOEjercicio> getListaEjercicios();
+	public boolean edit(DTOEjercicio ObjUsuario);
 	public boolean eliminarEjercicio(DTOEjercicio objEjercicio);
 }

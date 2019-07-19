@@ -12,25 +12,25 @@
 	<h:form id="form">
 	<p:growl id="msgs" showDetail="true"/>
 	
-    <p:dataTable id="listaEjercicio" var="objEjercicio" value="#{ejercicioController.listaUsuario}" editable="true" style="margin-bottom:20px"
+    <p:dataTable id="listaEjercicio" var="objEjercicio" value="#{ejercicioController.listaEjercicio}" editable="true" style="margin-bottom:20px"
     			rows="10" paginator="true"
                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                 rowsPerPageTemplate="10,15,20">
                  
-        <p:ajax event="rowEdit" listener="#{usuarioController.onRowEdit}" update=":form:msgs" />
-        <p:ajax event="rowEditCancel" listener="#{usuarioController.onRowCancel}" update=":form:msgs" />
+        <p:ajax event="rowEdit" listener="#{ejercicioController.onRowEdit}" update=":form:msgs" />
+        <p:ajax event="rowEditCancel" listener="#{ejercicioController.onRowCancel}" update=":form:msgs" />
         
-        <p:column headerText="Nombres">
+        <p:column headerText="EJEID">
         	<p:cellEditor>
-        		<f:facet name="output"><h:outputText value="#{objEjercicio.ejeid}"/></f:facet>
-        		<f:facet name="input"><p:inputText value="#{objEjercicio.ejeid}" style="width:100%"/></f:facet>
+        		<f:facet name="output"><h:outputText value="#{objEjercicio.idEjercicio}"/></f:facet>
+        		<f:facet name="input"><p:inputText value="#{objEjercicio.idEjercicio}" style="width:100%"/></f:facet>
         	</p:cellEditor>            
         </p:column>
  
-        <p:column headerText="Apellidos">
+        <p:column headerText="Nombre">
             <p:cellEditor>
-        		<f:facet name="output"><h:outputText value="#{objEjercicio.ejenombre}"/></f:facet>
-        		<f:facet name="input"><p:inputText value="#{objEjercicio.ejenombre}" style="width:100%"/></f:facet>
+        		<f:facet name="output"><h:outputText value="#{objEjercicio.nombre}"/></f:facet>
+        		<f:facet name="input"><p:inputText value="#{objEjercicio.nombre}" style="width:100%"/></f:facet>
         	</p:cellEditor>  
         </p:column>
         
