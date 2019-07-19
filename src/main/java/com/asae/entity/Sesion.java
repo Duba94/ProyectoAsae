@@ -3,7 +3,6 @@ package com.asae.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-import java.math.BigInteger;
 
 
 /**
@@ -23,8 +22,10 @@ public class Sesion implements Serializable {
 
 	private double sesimrtotal;
 
-	@Column(name="USUARIO_ID")
-	private BigInteger usuarioId;
+	//bi-directional many-to-one association to Usuario
+	@ManyToOne
+	@JoinColumn(name="USUID")
+	private Usuario usuario;
 
 	public Sesion() {
 	}
@@ -53,12 +54,12 @@ public class Sesion implements Serializable {
 		this.sesimrtotal = sesimrtotal;
 	}
 
-	public BigInteger getUsuarioId() {
-		return this.usuarioId;
+	public Usuario getUsuario() {
+		return this.usuario;
 	}
 
-	public void setUsuarioId(BigInteger usuarioId) {
-		this.usuarioId = usuarioId;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }
