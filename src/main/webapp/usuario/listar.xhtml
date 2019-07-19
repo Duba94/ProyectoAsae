@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+</h:head>
+<h:body>
+	<h:form id="form">
+	<p:growl id="msgs" showDetail="true"/>
+	
+    <p:dataTable id="listaUsuario" var="objUsuario" value="#{usuarioController.listaUsuario}" editable="true" style="margin-bottom:20px"
+    			rows="10" paginator="true"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="10,15,20">
+                 
+        <p:ajax event="rowEdit" listener="#{usuarioController.onRowEdit}" update=":form:msgs" />
+        <p:ajax event="rowEditCancel" listener="#{usuarioController.onRowCancel}" update=":form:msgs" />
+        
+        <p:column headerText="Nombres">
+        	<p:cellEditor>
+        		<f:facet name="output"><h:outputText value="#{objUsuario.nombre}"/></f:facet>
+        		<f:facet name="input"><p:inputText value="#{objUsuario.nombre}" style="width:100%"/></f:facet>
+        	</p:cellEditor>            
+        </p:column>
+ 
+        <p:column headerText="Apellidos">
+            <p:cellEditor>
+        		<f:facet name="output"><h:outputText value="#{objUsuario.apellido}"/></f:facet>
+        		<f:facet name="input"><p:inputText value="#{objUsuario.apellido}" style="width:100%"/></f:facet>
+        	</p:cellEditor>  
+        </p:column>
+ 
+ 		<p:column headerText="Fecha de nacimiento">
+            <p:cellEditor>
+        		<f:facet name="output"><h:outputText value="#{objUsuario.fechaNacimiento}"/></f:facet>
+        		<f:facet name="input"><p:inputText value="#{objUsuario.fechaNacimiento}" style="width:100%"/></f:facet>
+        	</p:cellEditor>  
+        </p:column>
+        
+        <p:column headerText="Contraseña">
+            <p:cellEditor>
+        		<f:facet name="output"><h:outputText value="#{objUsuario.contrasenia}"/></f:facet>
+        		<f:facet name="input"><p:inputText value="#{objUsuario.contrasenia}" style="width:100%"/></f:facet>
+        	</p:cellEditor>  
+        </p:column>
+        
+         <p:column headerText="Correo electronico">
+            <p:cellEditor>
+        		<f:facet name="output"><h:outputText value="#{objUsuario.correoElectronico}"/></f:facet>
+        		<f:facet name="input"><p:inputText value="#{objUsuario.correoElectronico}" style="width:100%"/></f:facet>
+        	</p:cellEditor>  
+        </p:column>
+ 
+  		<p:column headerText="Fecha de registro">
+            <p:cellEditor>
+        		<f:facet name="output"><h:outputText value="#{objUsuario.fechaRegistro}"/></f:facet>
+        		<f:facet name="input"><p:inputText value="#{objUsuario.fechaRegistro}" style="width:100%"/></f:facet>
+        	</p:cellEditor>  
+        </p:column>
+        
+        <p:column style="width:45px">
+            <p:rowEditor />
+        </p:column>
+        
+        <f:facet name="paginatorTopLeft">
+            <p:commandButton type="button" icon="pi pi-refresh" />
+        </f:facet>
+ 
+        <f:facet name="paginatorBottomRight">
+            <p:commandButton type="button" icon="pi pi-cloud-upload" />
+        </f:facet>
+ 
+    </p:dataTable>
+</h:form>
+</h:body>
+</html>
