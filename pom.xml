@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.asae</groupId>
-  <artifactId>gestionUsuariosPrimeFacesV2</artifactId>
-  <version>1</version>
+  <artifactId>horaSaludable</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>gestionUsuariosPrimeFacesV2</name>
+  <name>horaSaludable</name>
   <url>http://maven.apache.org</url>
 
   <dependencies>
