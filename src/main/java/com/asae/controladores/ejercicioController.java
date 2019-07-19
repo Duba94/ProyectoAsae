@@ -1,8 +1,10 @@
 package com.asae.controladores;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -11,18 +13,21 @@ import javax.faces.context.FacesContext;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import org.primefaces.event.RowEditEvent;
+
 import com.asae.dto.DTOEjercicio;
 import com.asae.ejbinterface.IEjbEjercicio;
 
 @ManagedBean(name = "ejercicioController")
 @RequestScoped 
 public class ejercicioController {
- @ManagedProperty(value="#{objejercicio}")
+ @ManagedProperty(value="#{objEjercicio}")
  private DTOEjercicio objEjercicio;
- private ArrayList<DTOEjercicio> listaEjercicio;
+ private List<DTOEjercicio> listaEjercicio;
  private static final String EJBGestionEjercicios_SESION_KEY="EJBSesionEjercicios";
  private IEjbEjercicio iEjbEjercicio;
  
+ @PostConstruct
   public void init() {
 	 System.out.println("creando ejb");
 	 consultarRefernciaEJB();
@@ -35,7 +40,7 @@ public class ejercicioController {
   
      this.objEjercicio = objEjercicio;
   }
-  public  ArrayList<DTOEjercicio> getListaEjercicio() {
+  public  List<DTOEjercicio> getListaEjercicio() {
 	  if(listaEjercicio.isEmpty())
 		  this.listarEjercicios();
 	  return listaEjercicio;
@@ -60,7 +65,7 @@ public class ejercicioController {
   public String listarEjercicios()
   {		
 		this.listaEjercicio= (ArrayList<DTOEjercicio>)iEjbEjercicio.getListaEjercicios();		
-		return "/ejercicio/listar";
+		return "/usuario/listar";
   }
   public String eliminarEjercicio()
   {
@@ -88,7 +93,7 @@ public class ejercicioController {
 	        	
 				try {
 					InitialContext ic = new InitialContext();
-					this.iEjbEjercicio = (IEjbEjercicio) ic.lookup("java:global/gestionUsuariosPrimeFacesV2-1/EjbUsuarioImpl!com.asae.ejbinterface.IEjbUsuario");
+					this.iEjbEjercicio = (IEjbEjercicio) ic.lookup("java:global/horaSaludable-0.0.1-SNAPSHOT/EjbEjercicioImpl!com.asae.ejbinterface.IEjbEjercicio");
 			        	 
 					
 					requestMap.putIfAbsent(EJBGestionEjercicios_SESION_KEY, this.iEjbEjercicio);
@@ -100,6 +105,25 @@ public class ejercicioController {
 					e.printStackTrace();
 				}
        }
+  }
+  
+  public void onRowEdit(RowEditEvent event) {
+		DTOEjercicio objUsuario = (DTOEjercicio) event.getObject();
+		try
+		{				
+			iEjbEjercicio.edit(objUsuario);
+			this.addMessage("Actualizacion exitoso", "Actualizacion exitosa del usuario");
+	    }
+		catch(Exception ex)
+		{
+			System.out.println("Error en editar: "+ex.getMessage());
+			this.addMessage("Error al actualizar el usuario", "Error al actualizar el usuario");
+		}					
+  }
+   
+  public void onRowCancel(RowEditEvent event) {
+      FacesMessage msg = new FacesMessage("Edit Cancelled", ""+((DTOEjercicio) event.getObject()).getIdEjercicio());
+      FacesContext.getCurrentInstance().addMessage(null, msg);
   }
   public void addMessage(String summary, String detail) {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);

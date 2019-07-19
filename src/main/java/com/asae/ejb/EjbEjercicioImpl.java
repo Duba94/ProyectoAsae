@@ -26,7 +26,7 @@ public class EjbEjercicioImpl implements IEjbEjercicio {
 	public void inicializarEJB() 
 	{
 		System.out.println("En EjbEjercicio: Entrando de inicializarEJB()...");
-		emf=Persistence.createEntityManagerFactory("App_ASAE_HoraSaludable");
+		emf=Persistence.createEntityManagerFactory("horaSaludable");
 		em=emf.createEntityManager();
 		System.out.println("En EjbEjercicio: Saliendo de inicializarEJB()...");
 	}
@@ -98,6 +98,34 @@ public class EjbEjercicioImpl implements IEjbEjercicio {
 		return listaEjercicios;
 	}
 
+	@Override
+	public boolean edit(DTOEjercicio ObjEjercicio) {		
+		try{			
+			IDaoEjercicio iDaoEjercicio=new DaoEjercicio();		
+			Ejercicio ejercicio = iDaoEjercicio.getByIdEjercicio(em, ObjEjercicio.getIdEjercicio());
+			ejercicio.setEjeid(""+ObjEjercicio.getIdEjercicio());
+			ejercicio.setEjenombre(ObjEjercicio.getNombre());				
+			
+			et=em.getTransaction();
+			
+			et.begin();
+			iDaoEjercicio.update(em, ejercicio);
+			et.commit();
+			
+			return true;
+		}
+		catch(Exception ex)
+		{
+			if(et!=null)
+			{
+				et.rollback();
+			}
+			
+			System.out.println("Error: "+ex.getMessage());
+			
+			return false;
+		}
+	}
 	
 	public boolean eliminarEjercicio(DTOEjercicio objEjercicio) {
 		boolean bandera=false;
