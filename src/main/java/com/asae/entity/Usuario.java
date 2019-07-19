@@ -15,7 +15,7 @@ import java.util.List;
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	//clase usuario
 	@Id
 	private String usuid;
 
