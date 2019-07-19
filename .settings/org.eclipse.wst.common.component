@@ -3,7 +3,12 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+<<<<<<< HEAD
+        <property name="java-output-path" value="/gestionUsuariosPrimeFacesV2/target/classes"/>
+        <property name="context-root" value="gestionUsuariosPrimeFacesV2"/>
+=======
         <property name="context-root" value="horaSaludable"/>
         <property name="java-output-path" value="/horaSaludable/target/classes"/>
+>>>>>>> ec79e34a694efa487f745759e14a8c46dc77273b
     </wb-module>
 </project-modules>

@@ -40,9 +40,16 @@ public class ejercicioController {
   
      this.objEjercicio = objEjercicio;
   }
+<<<<<<< HEAD
   public  List<DTOEjercicio> getListaEjercicio() {
+=======
+  public  ArrayList<DTOEjercicio> getListaEjercicio() {
+<<<<<<< HEAD
+=======
+>>>>>>> 7223ad5867d5836031c46b93eca5c94a0a8c4199
 	  if(listaEjercicio.isEmpty())
 		  this.listarEjercicios();
+>>>>>>> ec79e34a694efa487f745759e14a8c46dc77273b
 	  return listaEjercicio;
   }
   public void setListaEjercicio(ArrayList<DTOEjercicio> listaEjercicio) {
