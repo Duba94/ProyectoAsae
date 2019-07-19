@@ -48,7 +48,7 @@
 		    <h3 style="text-align: center">Menu Administrador</h3>
 		 <p:menu toggleable="true">
         <p:submenu label="Gestion de Ejercicios">
-            <p:menuitem value="Guardar Ejercicio" action="#{menuView.save}" update="messages" icon="pi pi-save" />
+            <p:menuitem value="Guardar Ejercicio" action="styles.html" update="messages" icon="pi pi-save" />
             <p:menuitem value="Editar Ejercicio" action="#{menuView.update}" update="messages" icon="pi pi-refresh"/>
             <p:menuitem value="Eliminar Ejercicio" action="#{menuView.update}" update="messages" icon="pi pi-refresh"/>
             
@@ -109,7 +109,7 @@
         		<h3>Nombre del Ejercicio</h3>
 				  <p:inputText class="col-12" />
 				  
-				   <h3 style="margin-top: 0">Descripcionessvegass</h3>
+				   <h3 style="margin-top: 0">Descripcion</h3>
 				   <p:inputTextarea rows="10" cols="41" completeMethod="#{inputTextareaView.completeArea}" queryDelay="750" minQueryLength="4" />
 				 
 				 
